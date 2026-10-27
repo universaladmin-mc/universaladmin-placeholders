@@ -31,6 +31,13 @@ public final class PlaceholdersPlugin extends JavaPlugin {
         MessageBundles.register(this, universalAdmin.get().messages(), "en_US", "de_DE");
         universalAdmin.get().extensions().register(this,
                 new PlaceholdersModule(new UniversalAdminExpansion(this, universalAdmin.get())));
+
+        // UniversalAdmin 1.6+ checks this extension's own releases too; older ones lack the method.
+        try {
+            universalAdmin.get().extensions().updatesFrom(this, "universaladmin-mc/universaladmin-placeholders", "universaladmin-placeholderapi-");
+        } catch (NoSuchMethodError olderUniversalAdmin) {
+            // Updates come by hand, as before.
+        }
     }
 
     /** Compares "major.minor" version strings numerically. */

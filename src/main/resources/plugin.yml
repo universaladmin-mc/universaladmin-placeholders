@@ -3,5 +3,5 @@ version: '${version}'
 main: dev.universaladmin.placeholders.PlaceholdersPlugin
 api-version: '1.21.7'
 description: PlaceholderAPI placeholders for UniversalAdmin - vanish, mutes, warnings, reports, maintenance, network.
-website: https://github.com/universaladmin-mc/UniversalAdmin
+website: https://universaladmin-mc.github.io/UniversalAdmin/extensions/placeholderapi/
 depend: [UniversalAdmin, PlaceholderAPI]
