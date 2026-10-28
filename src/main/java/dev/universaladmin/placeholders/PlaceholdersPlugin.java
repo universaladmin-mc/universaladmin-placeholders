@@ -23,7 +23,7 @@ public final class PlaceholdersPlugin extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        if (compare(UniversalAdminProvider.API_VERSION, REQUIRED_API) < 0) {
+        if (compare(runningApiVersion(), REQUIRED_API) < 0) {
             getLogger().severe("UniversalAdminPlaceholders needs UniversalAdmin " + REQUIRED_API + " or newer - please update it.");
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -37,6 +37,18 @@ public final class PlaceholdersPlugin extends JavaPlugin {
             universalAdmin.get().extensions().updatesFrom(this, "universaladmin-mc/universaladmin-placeholders", "universaladmin-placeholderapi-");
         } catch (NoSuchMethodError olderUniversalAdmin) {
             // Updates come by hand, as before.
+        }
+    }
+
+    /**
+     * The API version of the UniversalAdmin that runs - read at runtime, as
+     * the compiler copies the constant's value into this class otherwise.
+     */
+    private static String runningApiVersion() {
+        try {
+            return (String) UniversalAdminProvider.class.getField("API_VERSION").get(null);
+        } catch (ReflectiveOperationException e) {
+            return "0";
         }
     }
 

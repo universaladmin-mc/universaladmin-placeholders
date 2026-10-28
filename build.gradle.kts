@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "dev.universaladmin.placeholders"
-version = "1.6.0"
+version = "1.6.1"
 base.archivesName.set("universaladmin-placeholderapi")
 
 java {
